@@ -6,14 +6,14 @@ View it live at
 
 ###Main Functionality:
 
-* general
-** cloudinary pictures
+#### general
+* cloudinary pictures
 
-* User
-** Cart
-** view Styles
+#### User
+* Cart
+* view Styles
 
-* Seller Login
-** Seperate Login
-** Upload Styles
-** email updates
+#### Seller Login
+* Seperate Login
+* Upload Styles
+* email updates
