@@ -24056,7 +24056,62 @@
 	module.exports = NavBar;
 
 /***/ },
-/* 208 */,
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var LinkedStateMixin = __webpack_require__(229);
+	
+	var SignUp = React.createClass({
+	  displayName: 'SignUp',
+	
+	  mixins: [LinkedStateMixin],
+	
+	  getInitialState: function () {
+	    return {
+	      username: "",
+	      email: "",
+	      password: "",
+	      buyer: false
+	    };
+	  },
+	  createUser: function () {
+	    console.log(this.state.username);
+	    console.log(this.state.email);
+	    console.log(this.state.password);
+	  },
+	
+	  render: function () {
+	    return React.createElement(
+	      'form',
+	      { id: 'signup' },
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Sign Up'
+	      ),
+	      'Username:',
+	      React.createElement('input', { type: 'text', valueLink: this.linkState('username') }),
+	      React.createElement('br', null),
+	      'E-mail: ',
+	      React.createElement('input', { type: 'text', valueLink: this.linkState('email') }),
+	      React.createElement('br', null),
+	      'Password: ',
+	      React.createElement('input', { type: 'password', valueLink: this.linkState('password') }),
+	      React.createElement('br', null),
+	      React.createElement(
+	        'button',
+	        { onClick: this.createUser },
+	        'Sign Up'
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = SignUp;
+
+/***/ },
 /* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -26263,8 +26318,8 @@
 	var React = __webpack_require__(1);
 	var Modal = __webpack_require__(209);
 	var LinkedStateMixin = __webpack_require__(229);
+	var SignUp = __webpack_require__(208);
 	
-	// var appElement = document.getElementById('"signup-modal"');
 	const customStyles = {
 	  content: {
 	    top: '50%',
@@ -26275,16 +26330,7 @@
 	    transform: 'translate(-50%, -50%)'
 	  }
 	};
-	// var LinkedStateMixin = require('react-addons-linked-state-mixin');
-	//
-	// var WithLink = React.createClass({
-	//   getInitialState: function() {
-	//     return {message: 'Hello!'};
-	//   },
-	//   render: function() {
-	//     return <input type="text" valueLink={this.linkState('message')} />;
-	//   }
-	// });
+	
 	var User = React.createClass({
 	  displayName: 'User',
 	
@@ -26292,11 +26338,7 @@
 	
 	  getInitialState: function () {
 	    return {
-	      modalIsOpen: false,
-	      username: "",
-	      email: "",
-	      password: "",
-	      buyer: false
+	      modalIsOpen: false
 	    };
 	  },
 	
@@ -26317,12 +26359,6 @@
 	    this.setState({ modalIsOpen: false });
 	  },
 	
-	  createUser: function () {
-	    console.log(this.state.username);
-	    console.log(this.state.email);
-	    console.log(this.state.password);
-	  },
-	
 	  render: function () {
 	    return React.createElement(
 	      'div',
@@ -26339,25 +26375,7 @@
 	          onAfterOpen: this.afterOpenModal,
 	          onRequestClose: this.closeModal,
 	          style: customStyles },
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Sign Up'
-	        ),
-	        'Username:',
-	        React.createElement('input', { type: 'text', valueLink: this.linkState('username') }),
-	        React.createElement('br', null),
-	        'E-mail: ',
-	        React.createElement('input', { type: 'text', valueLink: this.linkState('email') }),
-	        React.createElement('br', null),
-	        'Password: ',
-	        React.createElement('input', { type: 'password', valueLink: this.linkState('password') }),
-	        React.createElement('br', null),
-	        React.createElement(
-	          'button',
-	          { onClick: this.createUser },
-	          'Sign Up'
-	        )
+	        React.createElement(SignUp, null)
 	      )
 	    );
 	  }
