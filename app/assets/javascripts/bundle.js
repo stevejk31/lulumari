@@ -24090,15 +24090,36 @@
 	        null,
 	        'Sign Up'
 	      ),
-	      'Username:',
-	      React.createElement('input', { type: 'text', valueLink: this.linkState('username') }),
-	      React.createElement('br', null),
-	      'E-mail: ',
-	      React.createElement('input', { type: 'text', valueLink: this.linkState('email') }),
-	      React.createElement('br', null),
-	      'Password: ',
-	      React.createElement('input', { type: 'password', valueLink: this.linkState('password') }),
-	      React.createElement('br', null),
+	      React.createElement(
+	        'div',
+	        { className: 'form-group' },
+	        React.createElement(
+	          'label',
+	          { className: 'username' },
+	          'Username:'
+	        ),
+	        React.createElement('input', { type: 'text', className: 'form-control', valueLink: this.linkState('username') })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'form-group' },
+	        React.createElement(
+	          'label',
+	          { className: 'email' },
+	          'E-mail:'
+	        ),
+	        React.createElement('input', { type: 'text', className: 'form-control', valueLink: this.linkState('email') })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'form-group' },
+	        React.createElement(
+	          'label',
+	          { className: 'password' },
+	          'Password:'
+	        ),
+	        React.createElement('input', { type: 'password', className: 'form-control', valueLink: this.linkState('password') })
+	      ),
 	      React.createElement(
 	        'button',
 	        { onClick: this.createUser },

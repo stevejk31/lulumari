@@ -24,13 +24,29 @@ var SignUp = React.createClass({
     return (
       <form id="signup">
         <h2>Sign Up</h2>
-        Username:<input type="text" valueLink={this.linkState('username')} />
-        <br/>
-        E-mail: <input type="text" valueLink={this.linkState('email')} />
-        <br/>
-        Password: <input type="password" valueLink={this.linkState('password')} />
-        <br/>
+        <div className="form-group">
+          <label className="username">
+            Username:
+          </label>
+          <input type="text" className="form-control" valueLink={this.linkState('username')} />
+        </div>
+
+        <div className="form-group">
+          <label className="email">
+            E-mail:
+          </label>
+           <input type="text" className="form-control" valueLink={this.linkState('email')} />
+        </div>
+
+        <div className="form-group">
+          <label className="password">
+            Password:
+          </label>
+        <input type="password" className="form-control" valueLink={this.linkState('password')} />
+        </div>
+
         <button onClick={this.createUser}>Sign Up</button>
+
       </form>
     );
   }
