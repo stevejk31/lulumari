@@ -2,6 +2,8 @@ var React = require('react');
 var Modal = require('react-modal');
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var SignUp = require('./signUp.jsx')
+var LogIn = require('./LogIn.jsx')
+
 
 
 const customStyles = {
@@ -43,17 +45,18 @@ var User = React.createClass({
 
   render: function() {
     return (
-      <div className="signup">
-        <button onClick={this.openModal}>Sign Up</button>
+      <li className="signup">
+        <button onClick={this.openModal}>User</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles} >
+          <button onClick={this.closeModal} className="close-modal">X</button>
           <SignUp/>
-
+          <LogIn/>
         </Modal>
-      </div>
+      </li>
     );
   }
 

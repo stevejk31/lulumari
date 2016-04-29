@@ -6,10 +6,10 @@ var NavBar = React.createClass({
 
   render: function() {
     return (
-      <div id="navbar">
-        navbar
+      <ul id="navbar">
+        <li>logo</li>
         <User/>
-      </div>
+      </ul>
     );
   }
 

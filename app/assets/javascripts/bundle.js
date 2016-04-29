@@ -24007,7 +24007,7 @@
 
 	var React = __webpack_require__(1);
 	var NavBar = __webpack_require__(207);
-	var Footer = __webpack_require__(233);
+	var Footer = __webpack_require__(234);
 	
 	var App = React.createClass({
 	  displayName: 'App',
@@ -24021,7 +24021,8 @@
 	      React.createElement(
 	        'div',
 	        { id: 'content' },
-	        'hello'
+	        'hello',
+	        this.children
 	      ),
 	      React.createElement(Footer, null)
 	    );
@@ -24036,7 +24037,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var User = __webpack_require__(234);
+	var User = __webpack_require__(208);
 	
 	var NavBar = React.createClass({
 	  displayName: 'NavBar',
@@ -24044,9 +24045,13 @@
 	
 	  render: function () {
 	    return React.createElement(
-	      'div',
+	      'ul',
 	      { id: 'navbar' },
-	      'navbar',
+	      React.createElement(
+	        'li',
+	        null,
+	        'logo'
+	      ),
 	      React.createElement(User, null)
 	    );
 	  }
@@ -24060,77 +24065,80 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var Modal = __webpack_require__(209);
 	var LinkedStateMixin = __webpack_require__(229);
+	var SignUp = __webpack_require__(233);
+	var LogIn = __webpack_require__(235);
 	
-	var SignUp = React.createClass({
-	  displayName: 'SignUp',
+	const customStyles = {
+	  content: {
+	    top: '50%',
+	    left: '50%',
+	    right: 'auto',
+	    bottom: 'auto',
+	    marginRight: '-50%',
+	    transform: 'translate(-50%, -50%)'
+	  }
+	};
+	
+	var User = React.createClass({
+	  displayName: 'User',
 	
 	  mixins: [LinkedStateMixin],
 	
 	  getInitialState: function () {
 	    return {
-	      username: "",
-	      email: "",
-	      password: "",
-	      buyer: false
+	      modalIsOpen: false
 	    };
 	  },
-	  createUser: function () {
-	    console.log(this.state.username);
-	    console.log(this.state.email);
-	    console.log(this.state.password);
+	
+	  componentWillMount() {
+	    Modal.setAppElement('body');
+	  },
+	
+	  openModal: function () {
+	    this.setState({ modalIsOpen: true });
+	  },
+	
+	  afterOpenModal: function () {
+	    // references are now sync'd and can be accessed.
+	    this.refs.subtitle.style.color = '#f00';
+	  },
+	
+	  closeModal: function () {
+	    this.setState({ modalIsOpen: false });
 	  },
 	
 	  render: function () {
 	    return React.createElement(
-	      'form',
-	      { id: 'signup' },
-	      React.createElement(
-	        'h2',
-	        null,
-	        'Sign Up'
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'form-group' },
-	        React.createElement(
-	          'label',
-	          { className: 'username' },
-	          'Username:'
-	        ),
-	        React.createElement('input', { type: 'text', className: 'form-control', valueLink: this.linkState('username') })
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'form-group' },
-	        React.createElement(
-	          'label',
-	          { className: 'email' },
-	          'E-mail:'
-	        ),
-	        React.createElement('input', { type: 'text', className: 'form-control', valueLink: this.linkState('email') })
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'form-group' },
-	        React.createElement(
-	          'label',
-	          { className: 'password' },
-	          'Password:'
-	        ),
-	        React.createElement('input', { type: 'password', className: 'form-control', valueLink: this.linkState('password') })
-	      ),
+	      'li',
+	      { className: 'signup' },
 	      React.createElement(
 	        'button',
-	        { onClick: this.createUser },
-	        'Sign Up'
+	        { onClick: this.openModal },
+	        'User'
+	      ),
+	      React.createElement(
+	        Modal,
+	        {
+	          isOpen: this.state.modalIsOpen,
+	          onAfterOpen: this.afterOpenModal,
+	          onRequestClose: this.closeModal,
+	          style: customStyles },
+	        React.createElement(
+	          'button',
+	          { onClick: this.closeModal, className: 'close-modal' },
+	          'X'
+	        ),
+	        React.createElement(SignUp, null),
+	        React.createElement(LogIn, null)
 	      )
 	    );
 	  }
 	
 	});
 	
-	module.exports = SignUp;
+	module.exports = User;
 
 /***/ },
 /* 209 */
@@ -26315,6 +26323,83 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var LinkedStateMixin = __webpack_require__(229);
+	
+	var SignUp = React.createClass({
+	  displayName: 'SignUp',
+	
+	  mixins: [LinkedStateMixin],
+	
+	  getInitialState: function () {
+	    return {
+	      username: "",
+	      email: "",
+	      password: "",
+	      buyer: false
+	    };
+	  },
+	  createUser: function () {
+	    console.log(this.state.username);
+	    console.log(this.state.email);
+	    console.log(this.state.password);
+	  },
+	
+	  render: function () {
+	    return React.createElement(
+	      'form',
+	      { id: 'signup' },
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Sign Up'
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'form-group' },
+	        React.createElement(
+	          'label',
+	          { className: 'username' },
+	          'Username:'
+	        ),
+	        React.createElement('input', { type: 'text', className: 'form-control', valueLink: this.linkState('username') })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'form-group' },
+	        React.createElement(
+	          'label',
+	          { className: 'email' },
+	          'E-mail:'
+	        ),
+	        React.createElement('input', { type: 'text', className: 'form-control', valueLink: this.linkState('email') })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'form-group' },
+	        React.createElement(
+	          'label',
+	          { className: 'password' },
+	          'Password:'
+	        ),
+	        React.createElement('input', { type: 'password', className: 'form-control', valueLink: this.linkState('password') })
+	      ),
+	      React.createElement(
+	        'button',
+	        { onClick: this.createUser },
+	        'Sign Up'
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = SignUp;
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
 	
 	var Footer = React.createClass({
 	  displayName: "Footer",
@@ -26333,77 +26418,71 @@
 	module.exports = Footer;
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var Modal = __webpack_require__(209);
 	var LinkedStateMixin = __webpack_require__(229);
-	var SignUp = __webpack_require__(208);
 	
-	const customStyles = {
-	  content: {
-	    top: '50%',
-	    left: '50%',
-	    right: 'auto',
-	    bottom: 'auto',
-	    marginRight: '-50%',
-	    transform: 'translate(-50%, -50%)'
-	  }
-	};
-	
-	var User = React.createClass({
-	  displayName: 'User',
+	var LogIn = React.createClass({
+	  displayName: 'LogIn',
 	
 	  mixins: [LinkedStateMixin],
 	
 	  getInitialState: function () {
 	    return {
-	      modalIsOpen: false
+	      username: "",
+	      email: "",
+	      password: "",
+	      buyer: false
 	    };
 	  },
-	
-	  componentWillMount() {
-	    Modal.setAppElement('body');
-	  },
-	
-	  openModal: function () {
-	    this.setState({ modalIsOpen: true });
-	  },
-	
-	  afterOpenModal: function () {
-	    // references are now sync'd and can be accessed.
-	    this.refs.subtitle.style.color = '#f00';
-	  },
-	
-	  closeModal: function () {
-	    this.setState({ modalIsOpen: false });
+	  createUser: function () {
+	    console.log(this.state.username);
+	    console.log(this.state.email);
+	    console.log(this.state.password);
 	  },
 	
 	  render: function () {
 	    return React.createElement(
-	      'div',
-	      { className: 'signup' },
+	      'form',
+	      { id: 'login' },
 	      React.createElement(
-	        'button',
-	        { onClick: this.openModal },
-	        'Sign Up'
+	        'h2',
+	        null,
+	        'Log In'
 	      ),
 	      React.createElement(
-	        Modal,
-	        {
-	          isOpen: this.state.modalIsOpen,
-	          onAfterOpen: this.afterOpenModal,
-	          onRequestClose: this.closeModal,
-	          style: customStyles },
-	        React.createElement(SignUp, null)
+	        'div',
+	        { className: 'form-group' },
+	        React.createElement(
+	          'label',
+	          { className: 'username' },
+	          'Username:'
+	        ),
+	        React.createElement('input', { type: 'text', className: 'form-control', valueLink: this.linkState('username') })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'form-group' },
+	        React.createElement(
+	          'label',
+	          { className: 'password' },
+	          'Password:'
+	        ),
+	        React.createElement('input', { type: 'password', className: 'form-control', valueLink: this.linkState('password') })
+	      ),
+	      React.createElement(
+	        'button',
+	        { onClick: this.createUser },
+	        'Log In'
 	      )
 	    );
 	  }
 	
 	});
 	
-	module.exports = User;
+	module.exports = LogIn;
 
 /***/ }
 /******/ ]);

@@ -8,9 +8,10 @@ var App = React.createClass({
     return (
       <div id="wrapper">
         <NavBar/>
-          <div id="content">
-            hello
-          </div>
+        <div id="content">
+          hello
+          {this.children}
+        </div>
         <Footer/>
       </div>
     );

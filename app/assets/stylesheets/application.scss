@@ -14,3 +14,60 @@
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
  @import "bootstrap-sprockets";
  @import "bootstrap";
+html {
+  height:100%;
+}
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+#root {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+#content {
+  padding:10px;
+  height:100%;
+  padding-bottom:60px
+}
+
+#wrapper {
+  min-height:100%;
+  position:relative;
+}
+
+#footer {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:60px;   /* Height of the footer */
+  background:#6cf;
+}
+
+#navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background:#ff0;
+  padding:10px;
+}
+
+#navbar > li {
+  display:inline;
+}
+
+#signup {
+ float:left;
+ padding: 20px;
+}
+
+#login {
+ float:right;
+ padding: 20px;
+}
+
+.close-modal {
+ float:right;
+}
