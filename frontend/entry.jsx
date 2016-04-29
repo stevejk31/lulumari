@@ -6,7 +6,6 @@ var IndexRoute = require('react-router').IndexRoute;
 var App = require('./components/app.jsx');
 
 
-
 var routes = (
   <Route path="/" component={App}>
   </Route>

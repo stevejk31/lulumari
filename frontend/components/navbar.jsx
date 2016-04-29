@@ -1,4 +1,6 @@
 var React = require('react');
+var SignUp = require('./signUp.jsx');
+
 
 var NavBar = React.createClass({
 
@@ -6,6 +8,7 @@ var NavBar = React.createClass({
     return (
       <div id="navbar">
         navbar
+        <SignUp/>
       </div>
     );
   }
